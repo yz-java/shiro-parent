@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yz.shiro.api.dao.ResourceMapper" >
+  <resultMap id="BaseResultMap" type="com.yz.shiro.api.entity.Resource" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="r_name" property="rName" jdbcType="VARCHAR" />
+    <result column="r_type" property="rType" jdbcType="INTEGER" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="parent_id" property="parentId" jdbcType="BIGINT" />
+    <result column="parent_ids" property="parentIds" jdbcType="VARCHAR" />
+    <result column="permission" property="permission" jdbcType="VARCHAR" />
+    <result column="r_status" property="rStatus" jdbcType="BIT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, r_name, r_type, url, parent_id, parent_ids, permission, r_status, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from ss_resource
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from ss_resource
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.yz.shiro.api.entity.Resource" >
+    insert into ss_resource (id, r_name, r_type, 
+      url, parent_id, parent_ids, 
+      permission, r_status, create_time
+      )
+    values (#{id,jdbcType=BIGINT}, #{rName,jdbcType=VARCHAR}, #{rType,jdbcType=INTEGER}, 
+      #{url,jdbcType=VARCHAR}, #{parentId,jdbcType=BIGINT}, #{parentIds,jdbcType=VARCHAR}, 
+      #{permission,jdbcType=VARCHAR}, #{rStatus,jdbcType=BIT}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yz.shiro.api.entity.Resource" keyProperty="id" useGeneratedKeys="true" >
+    insert into ss_resource
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="rName != null" >
+        r_name,
+      </if>
+      <if test="rType != null" >
+        r_type,
+      </if>
+      <if test="url != null" >
+        url,
+      </if>
+      <if test="parentId != null" >
+        parent_id,
+      </if>
+      <if test="parentIds != null" >
+        parent_ids,
+      </if>
+      <if test="permission != null" >
+        permission,
+      </if>
+      <if test="rStatus != null" >
+        r_status,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="rName != null" >
+        #{rName,jdbcType=VARCHAR},
+      </if>
+      <if test="rType != null" >
+        #{rType,jdbcType=INTEGER},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="parentIds != null" >
+        #{parentIds,jdbcType=VARCHAR},
+      </if>
+      <if test="permission != null" >
+        #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="rStatus != null" >
+        #{rStatus,jdbcType=BIT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yz.shiro.api.entity.Resource" >
+    update ss_resource
+    <set >
+      <if test="rName != null" >
+        r_name = #{rName,jdbcType=VARCHAR},
+      </if>
+      <if test="rType != null" >
+        r_type = #{rType,jdbcType=INTEGER},
+      </if>
+      <if test="url != null" >
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        parent_id = #{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="parentIds != null" >
+        parent_ids = #{parentIds,jdbcType=VARCHAR},
+      </if>
+      <if test="permission != null" >
+        permission = #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="rStatus != null" >
+        r_status = #{rStatus,jdbcType=BIT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yz.shiro.api.entity.Resource" >
+    update ss_resource
+    set r_name = #{rName,jdbcType=VARCHAR},
+      r_type = #{rType,jdbcType=INTEGER},
+      url = #{url,jdbcType=VARCHAR},
+      parent_id = #{parentId,jdbcType=BIGINT},
+      parent_ids = #{parentIds,jdbcType=VARCHAR},
+      permission = #{permission,jdbcType=VARCHAR},
+      r_status = #{rStatus,jdbcType=BIT},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="select" parameterType="com.yz.shiro.api.entity.Resource" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from ss_resource
+    <where>
+      <if test="id != null" >
+        id = #{id,jdbcType=BIGINT}
+      </if>
+      <if test="rName != null" >
+        r_name = #{rName,jdbcType=VARCHAR}
+      </if>
+      <if test="rType != null" >
+        r_type = #{rType,jdbcType=INTEGER}
+      </if>
+      <if test="url != null" >
+        url = #{url,jdbcType=VARCHAR}
+      </if>
+      <if test="parentId != null" >
+        parent_id = #{parentId,jdbcType=BIGINT}
+      </if>
+      <if test="parentIds != null" >
+        parent_ids = #{parentIds,jdbcType=VARCHAR}
+      </if>
+      <if test="permission != null" >
+        permission = #{permission,jdbcType=VARCHAR}
+      </if>
+      <if test="rStatus != null" >
+        r_status = #{rStatus,jdbcType=BIT}
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+    </where>
+  </select>
+
+  <update id="updateParentIdsByParentIdsLike" parameterType="java.util.HashMap">
+    UPDATE ss_resource SET parent_ids = concat(#{targetParams},SUBSTRING(parent_ids,LENGTH(#{sourceParams})))
+    WHERE parent_ids LIKE '${sourceParams}%'
+  </update>
+
+  <update id="updateStatusByParentIdsLike" parameterType="java.util.HashMap">
+    UPDATE ss_resource SET r_status = #{status}
+    WHERE parent_ids LIKE '${parentIds}%'
+  </update>
+
+  <select id="selectByIds" parameterType="java.util.List" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from ss_resource
+    WHERE id IN
+    <foreach collection="list" item="id" open="(" close=")" separator=",">
+      #{id}
+    </foreach>
+  </select>
+
+  <select id="selectByPermissionList" parameterType="java.util.List" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from ss_resource
+    WHERE r_status = 1 AND permission IN
+    <foreach collection="list" item="permission" open="(" close=")" separator=",">
+      #{permission}
+    </foreach>
+  </select>
+
+  <select id="selectByParentIdsLike" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from ss_resource WHERE parent_ids LIKE '${parentIds}%'
+  </select>
+</mapper>

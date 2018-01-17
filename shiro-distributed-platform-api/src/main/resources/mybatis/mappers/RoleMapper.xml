@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yz.shiro.api.dao.RoleMapper" >
+  <resultMap id="BaseResultMap" type="com.yz.shiro.api.entity.Role" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="r_code" property="rCode" jdbcType="VARCHAR" />
+    <result column="r_desc" property="rDesc" jdbcType="VARCHAR" />
+    <result column="resource_ids" property="resourceIds" jdbcType="VARCHAR" />
+    <result column="r_status" property="rStatus" jdbcType="BIT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, r_code, r_desc, resource_ids, r_status, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from ss_role
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from ss_role
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.yz.shiro.api.entity.Role" >
+    insert into ss_role (id, r_code, r_desc, 
+      resource_ids, r_status, create_time
+      )
+    values (#{id,jdbcType=BIGINT}, #{rCode,jdbcType=VARCHAR}, #{rDesc,jdbcType=VARCHAR}, 
+      #{resourceIds,jdbcType=VARCHAR}, #{rStatus,jdbcType=BIT}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yz.shiro.api.entity.Role" keyProperty="id" useGeneratedKeys="true">
+    insert into ss_role
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="rCode != null" >
+        r_code,
+      </if>
+      <if test="rDesc != null" >
+        r_desc,
+      </if>
+      <if test="resourceIds != null" >
+        resource_ids,
+      </if>
+      <if test="rStatus != null" >
+        r_status,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="rCode != null" >
+        #{rCode,jdbcType=VARCHAR},
+      </if>
+      <if test="rDesc != null" >
+        #{rDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="resourceIds != null" >
+        #{resourceIds,jdbcType=VARCHAR},
+      </if>
+      <if test="rStatus != null" >
+        #{rStatus,jdbcType=BIT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yz.shiro.api.entity.Role" >
+    update ss_role
+    <set >
+      <if test="rCode != null" >
+        r_code = #{rCode,jdbcType=VARCHAR},
+      </if>
+      <if test="rDesc != null" >
+        r_desc = #{rDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="resourceIds != null" >
+        resource_ids = #{resourceIds,jdbcType=VARCHAR},
+      </if>
+      <if test="rStatus != null" >
+        r_status = #{rStatus,jdbcType=BIT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yz.shiro.api.entity.Role" >
+    update ss_role
+    set r_code = #{rCode,jdbcType=VARCHAR},
+      r_desc = #{rDesc,jdbcType=VARCHAR},
+      resource_ids = #{resourceIds,jdbcType=VARCHAR},
+      r_status = #{rStatus,jdbcType=BIT},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="select" parameterType="com.yz.shiro.api.entity.Role" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from ss_role
+    <where>
+      <if test="id != null" >
+        id = #{id,jdbcType=BIGINT}
+      </if>
+      <if test="rCode != null" >
+        r_code = #{rCode,jdbcType=VARCHAR}
+      </if>
+      <if test="rDesc != null" >
+        r_desc = #{rDesc,jdbcType=VARCHAR}
+      </if>
+      <if test="resourceIds != null" >
+        resource_ids = #{resourceIds,jdbcType=VARCHAR}
+      </if>
+      <if test="rStatus != null" >
+        r_status = #{rStatus,jdbcType=BIT}
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+    </where>
+  </select>
+
+  <select id="selectCount" resultType="java.lang.Long">
+    select
+    count(id)
+    from ss_role
+  </select>
+
+  <select id="selectByIdList" parameterType="java.util.List" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from ss_role
+    WHERE id IN
+    <foreach collection="list" item="id" open="(" close=")" separator=",">
+      #{id}
+    </foreach>
+  </select>
+
+</mapper>

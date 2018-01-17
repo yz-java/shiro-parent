@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean name="/remoteService" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+        <property name="service" ref="remoteService"/>
+        <property name="serviceInterface" value="com.yz.shiro.api.remote.RemoteService"/>
+    </bean>
+    <bean name="/userService" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+        <property name="service" ref="userServiceImpl"/>
+        <property name="serviceInterface" value="com.yz.shiro.api.service.UserService"/>
+    </bean>
+    <bean name="/resourceService" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+        <property name="service" ref="resourceServiceImpl"/>
+        <property name="serviceInterface" value="com.yz.shiro.api.service.ResourceService"/>
+    </bean>
+</beans>

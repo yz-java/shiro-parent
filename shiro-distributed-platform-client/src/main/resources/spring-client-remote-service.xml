@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <bean id="remoteService" class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+        <property name="serviceUrl" value="${client.remote.service.url}/remoteService"/>
+        <property name="serviceInterface" value="com.yz.shiro.api.remote.RemoteService"/>
+    </bean>
+    <bean id="userService" class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+        <property name="serviceUrl" value="${client.remote.service.url}/userService"/>
+        <property name="serviceInterface" value="com.yz.shiro.api.service.UserService"/>
+    </bean>
+    <bean id="resourceService" class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+        <property name="serviceUrl" value="${client.remote.service.url}/resourceService"/>
+        <property name="serviceInterface" value="com.yz.shiro.api.service.ResourceService"/>
+    </bean>
+
+</beans>
