@@ -4,9 +4,10 @@ import java.util.Date;
 
 import com.yz.shiro.api.entity.BaseEntity;
 import com.yz.shiro.server.utils.UUID;
-import org.apache.log4j.Logger;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Before;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * 
@@ -18,7 +19,7 @@ import org.aspectj.lang.annotation.Before;
  */
 //@Aspect
 public class InsetAspect {
-	Logger logger = Logger.getLogger(InsetAspect.class);
+	Logger logger = LoggerFactory.getLogger(InsetAspect.class);
 
 	@Before("execution(* com..service..*.insert*(..))")
 	public void add(JoinPoint jp) throws Exception {

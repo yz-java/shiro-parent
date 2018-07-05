@@ -43,10 +43,7 @@
 
     <import resource="classpath:mybatis/config/spring-mybatis.xml"/>
     <import resource="classpath:spring/spring-config-shiro.xml"/>
-    <!--<import resource="classpath:spring/spring-dubbo-server.xml"/>-->
     <import resource="classpath:spring/spring-aspectj.xml"/>
     <import resource="classpath:spring-redis.xml"/>
-
-
 
 </beans>

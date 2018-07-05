@@ -6,13 +6,11 @@ import com.yz.shiro.api.service.ResourceService;
 import com.yz.shiro.common.constants.Constant;
 import com.yz.shiro.api.entity.Resource;
 import com.yz.shiro.common.annotation.CurrentUser;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -47,6 +45,5 @@ public class IndexController {
         resourceService.cacheAllResources();
         return true;
     }
-
 
 }

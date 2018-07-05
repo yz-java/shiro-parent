@@ -3,7 +3,6 @@ package com.yz.shiro.server.utils;
 import java.io.IOException;
 import java.io.StringWriter;
 
-import org.apache.log4j.Logger;
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.JsonGenerator;
 import org.codehaus.jackson.JsonParseException;
@@ -13,7 +12,8 @@ import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.map.SerializationConfig;
 import org.codehaus.jackson.map.ser.CustomSerializerFactory;
 import org.codehaus.jackson.type.TypeReference;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 /**
@@ -26,7 +26,7 @@ import org.codehaus.jackson.type.TypeReference;
  */
 public class JSONUtil {
 	
-	private static Logger logger= Logger.getLogger(JSONUtil.class);
+	private static Logger logger= LoggerFactory.getLogger(JSONUtil.class);
 	
 	private static ObjectMapper objectMapper;
 	

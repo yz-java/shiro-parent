@@ -53,4 +53,28 @@
                 name="testOnBorrow"
                 value="${redis.pool.testOnBorrow}"/>
     </bean>
+
+    <bean id="shardedJedisPool" class="redis.clients.jedis.ShardedJedisPool">
+        <constructor-arg ref="jedisPoolConfig" />
+        <constructor-arg>
+            <list>
+                <bean class="redis.clients.jedis.JedisShardInfo">
+                    <constructor-arg value="${redis.ip}" />
+                    <constructor-arg type="int" value="${redis.port}" />
+                    <constructor-arg value="instance:01" />
+                    <property name="password" value="${redis.password}"/>
+                </bean>
+                <!--<bean class="redis.clients.jedis.JedisShardInfo">-->
+                    <!--<constructor-arg value="${redis2.host}" />-->
+                    <!--<constructor-arg type="int" value="${redis2.port}" />-->
+                    <!--<constructor-arg value="instance:02" />-->
+                <!--</bean>-->
+                <!--<bean class="redis.clients.jedis.JedisShardInfo">-->
+                    <!--<constructor-arg value="${redis3.host}" />-->
+                    <!--<constructor-arg type="int" value="${redis3.port}" />-->
+                    <!--<constructor-arg value="instance:03" />-->
+                <!--</bean>-->
+            </list>
+        </constructor-arg>
+    </bean>
 </beans>

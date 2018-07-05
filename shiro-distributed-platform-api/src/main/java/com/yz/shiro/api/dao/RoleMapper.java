@@ -1,7 +1,6 @@
 package com.yz.shiro.api.dao;
 
 import com.yz.shiro.api.entity.Role;
-
 import java.util.List;
 
 /**

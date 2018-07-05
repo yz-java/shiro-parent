@@ -1,17 +1,17 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : 测试库
+ Source Server         : my_database
  Source Server Type    : MySQL
  Source Server Version : 50721
- Source Host           : 192.168.1.160:3306
+ Source Host           : 192.168.1.200:33060
  Source Schema         : security
 
  Target Server Type    : MySQL
  Target Server Version : 50721
  File Encoding         : 65001
 
- Date: 28/04/2018 17:01:00
+ Date: 06/07/2018 00:22:39
 */
 
 SET NAMES utf8mb4;
@@ -30,7 +30,14 @@ CREATE TABLE `ss_app` (
   `available` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `idx_sys_app_app_key` (`app_key`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Records of ss_app
+-- ----------------------------
+BEGIN;
+INSERT INTO `ss_app` VALUES (1, '授权管理系统', '645ba616-370a-43a8-a8e0-993e7a590cf0', 'bb74abb6-bae0-47dd-a7b1-9571ea3a0f33', '', 1);
+COMMIT;
 
 -- ----------------------------
 -- Table structure for ss_area
@@ -141,13 +148,44 @@ CREATE TABLE `ss_resource` (
   KEY `idx_sys_resource_parent_id` (`parent_id`),
   KEY `idx_sys_resource_parent_ids` (`parent_ids`),
   KEY `idx_permission` (`permission`)
-) ENGINE=InnoDB AUTO_INCREMENT=335 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of ss_resource
 -- ----------------------------
 BEGIN;
 INSERT INTO `ss_resource` VALUES (1, '资源', 0, '', 0, '/0/', '', 1, '2017-12-22 09:49:36');
+INSERT INTO `ss_resource` VALUES (2, '权限管理系统', 0, '', 1, '/0/1/', '', 1, '2017-12-28 11:27:16');
+INSERT INTO `ss_resource` VALUES (3, '应用管理', 0, '', 2, '/0/1/2/', 'app:menu', 1, '2017-12-28 11:27:16');
+INSERT INTO `ss_resource` VALUES (4, '应用视图', 1, 'http://127.0.0.1:8080/app', 3, '/0/1/2/3/', 'app:view', 1, '2017-12-28 11:27:16');
+INSERT INTO `ss_resource` VALUES (5, '应用添加', 2, '', 3, '/0/1/2/3/', 'app:create', 1, '2017-12-28 11:27:16');
+INSERT INTO `ss_resource` VALUES (6, '应用修改', 2, '', 3, '/0/1/2/3/', 'app:update', 1, '2017-12-28 11:27:16');
+INSERT INTO `ss_resource` VALUES (7, '应用删除', 2, '', 3, '/0/1/2/3/', 'app:delete', 1, '2017-12-28 11:27:16');
+INSERT INTO `ss_resource` VALUES (8, '区域管理', 0, '', 2, '/0/1/2/', 'area:menu', 1, '2017-12-28 11:27:16');
+INSERT INTO `ss_resource` VALUES (9, '区域列表', 1, 'http://127.0.0.1:8080/area', 8, '/0/1/2/8/', 'area:view', 1, '2017-12-28 11:27:16');
+INSERT INTO `ss_resource` VALUES (10, '区域添加', 2, '', 8, '/0/1/2/8/', 'area:add', 1, '2017-12-28 11:27:16');
+INSERT INTO `ss_resource` VALUES (11, '区域编辑', 2, '', 8, '/0/1/2/8/', 'area:edit', 1, '2017-12-28 11:27:16');
+INSERT INTO `ss_resource` VALUES (12, '授权管理', 0, '', 2, '/0/1/2/', 'authorization:menu', 1, '2017-12-28 11:27:16');
+INSERT INTO `ss_resource` VALUES (13, '授权列表', 1, 'http://127.0.0.1:8080/authorization', 12, '/0/1/2/12/', 'authorization:view', 1, '2017-12-28 11:27:16');
+INSERT INTO `ss_resource` VALUES (14, '授权添加', 2, '', 12, '/0/1/2/12/', 'authorization:create', 1, '2017-12-28 11:27:16');
+INSERT INTO `ss_resource` VALUES (15, '授权修改', 2, '', 12, '/0/1/2/12/', 'authorization:update', 1, '2017-12-28 11:27:16');
+INSERT INTO `ss_resource` VALUES (16, '授权删除', 2, '', 12, '/0/1/2/12/', 'authorization:delete', 1, '2017-12-28 11:27:16');
+INSERT INTO `ss_resource` VALUES (17, '组织机构', 0, '', 2, '/0/1/2/', 'organization:menu', 1, '2017-12-28 11:27:16');
+INSERT INTO `ss_resource` VALUES (18, '组织机构列表', 1, 'http://127.0.0.1:8080/organization', 17, '/0/1/2/17/', 'organization:view', 1, '2017-12-28 11:27:16');
+INSERT INTO `ss_resource` VALUES (19, '组织机构添加', 2, '', 17, '/0/1/2/17/', 'organization:create', 1, '2017-12-28 11:27:16');
+INSERT INTO `ss_resource` VALUES (20, '组织机构编辑', 2, '', 17, '/0/1/2/17/', 'organization:update', 1, '2017-12-28 11:27:16');
+INSERT INTO `ss_resource` VALUES (21, '组织机构删除', 2, '', 17, '/0/1/2/17/', 'organization:delete', 1, '2017-12-27 18:11:20');
+INSERT INTO `ss_resource` VALUES (22, '用户管理', 0, '', 2, '/0/1/2/', 'user:menu', 1, '2017-12-28 11:27:16');
+INSERT INTO `ss_resource` VALUES (23, '用户列表', 1, 'http://127.0.0.1:8080/user', 22, '/0/1/2/22/', 'user:view', 1, '2018-07-05 23:25:28');
+INSERT INTO `ss_resource` VALUES (24, '用户添加', 2, '', 22, '/0/1/2/22/', 'user:create', 1, '2017-12-28 11:27:16');
+INSERT INTO `ss_resource` VALUES (25, '用户编辑', 2, '', 22, '/0/1/2/22/', 'user:update', 1, '2017-12-28 11:27:16');
+INSERT INTO `ss_resource` VALUES (26, '用户删除', 2, '', 22, '/0/1/2/22/', 'user:delete', 1, '2017-12-28 11:27:16');
+INSERT INTO `ss_resource` VALUES (27, '角色管理', 0, '', 2, '/0/1/2/', 'role:menu', 1, '2017-12-28 11:27:16');
+INSERT INTO `ss_resource` VALUES (28, '角色列表', 1, 'http://127.0.0.1:8080/role/search', 27, '/0/1/2/27/', 'role:view', 1, '2017-12-26 16:23:26');
+INSERT INTO `ss_resource` VALUES (29, '角色编辑', 2, '', 27, '/0/1/2/27/', 'role:update', 1, '2017-12-26 23:24:58');
+INSERT INTO `ss_resource` VALUES (30, '角色添加', 2, '', 27, '/0/1/2/27/', 'role:create', 1, '2017-12-26 23:25:50');
+INSERT INTO `ss_resource` VALUES (31, '资源管理', 0, '', 2, '/0/1/2/', 'resource:menu', 1, '2017-12-26 23:37:22');
+INSERT INTO `ss_resource` VALUES (32, '资源列表', 1, 'http://127.0.0.1:8080/resource', 31, '/0/1/2/31', 'resource:view', 1, '2017-12-26 23:39:43');
 COMMIT;
 
 -- ----------------------------
@@ -170,9 +208,7 @@ CREATE TABLE `ss_role` (
 -- Records of ss_role
 -- ----------------------------
 BEGIN;
-INSERT INTO `ss_role` VALUES (1, 'super-admin', '超级管理员', '78,82,86,92,91,221,237,77,79,80,81,83,84,85,87,88,89,208,209,210,243,93,94,95,198,224,235,236,238,240', 1, '2017-12-26 15:59:31');
-INSERT INTO `ss_role` VALUES (16, 'sbt-bms-admin', '汇百通后台管理系统超级管理员', '248,251,252,253,254,255,256,257,258,259,260,261,262,263,264,265,266,267,268,269,270,271,272,289,290,291,292,293,294,295,296,306,307,308,309,310,311,312,313,314,315,316,317,318,319,320,321,323,322,324,325,326,249,304,250,297,298,299,300,301,302,303,327,328,329,330,331,332,333,334', 1, '2017-12-28 14:45:25');
-INSERT INTO `ss_role` VALUES (18, 'hbt-goods-bms-admin', '商城后台管理员', '212,101,102,103,213,108,109,110,112,113,114,219,115,116,117,118,120,119,246,214,121,122,123,215,96,97,98,99,100,216,104,105,106,107,220', 1, '2018-04-10 14:34:30');
+INSERT INTO `ss_role` VALUES (1, 'super-admin', '超级管理员', '3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32', 1, '2017-12-26 15:59:31');
 COMMIT;
 
 -- ----------------------------
@@ -211,6 +247,13 @@ CREATE TABLE `ss_user_app_roles` (
   `role_ids` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `sys_user_app_roles_user_id_app_id` (`user_id`,`app_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Records of ss_user_app_roles
+-- ----------------------------
+BEGIN;
+INSERT INTO `ss_user_app_roles` VALUES (1, 1, 1, '1');
+COMMIT;
 
 SET FOREIGN_KEY_CHECKS = 1;
