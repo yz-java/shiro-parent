@@ -70,6 +70,7 @@ client.session.id=sid
 #cookie中的remember me名称
 client.rememberMe.id=rememberMe
 ```
+<h5 style="color:red;">注意这里配置的客户端127.0.0.1 如果使用localhost访问将会出现跨域session丢失问题</h5>
 
 #### 第二步：
 在项目resources目录下新建spring-shiro.xml配置文件
