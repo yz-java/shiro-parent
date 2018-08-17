@@ -3,10 +3,10 @@ package com.yz.shiro.api.remote;
 import java.io.Serializable;
 import java.util.Set;
 
-public class PermissionContext
-  implements Serializable
+public class PermissionContext implements Serializable
 {
   private Set<String> roles;
+
   private Set<String> permissions;
 
   public Set<String> getRoles()
@@ -26,6 +26,7 @@ public class PermissionContext
     this.permissions = permissions;
   }
 
+  @Override
   public String toString()
   {
     return "PermissionContext{, roles=" + this.roles + ", permissions=" + this.permissions + '}';

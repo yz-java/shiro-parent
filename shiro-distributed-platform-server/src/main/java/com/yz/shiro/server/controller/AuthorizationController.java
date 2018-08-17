@@ -6,10 +6,10 @@ import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.yz.shiro.api.entity.App;
-import com.yz.shiro.api.entity.Authorization;
-import com.yz.shiro.api.entity.Role;
-import com.yz.shiro.api.entity.User;
+import com.yz.shiro.entity.App;
+import com.yz.shiro.entity.Authorization;
+import com.yz.shiro.entity.Role;
+import com.yz.shiro.entity.User;
 import com.yz.shiro.api.service.AppService;
 import com.yz.shiro.api.service.AuthorizationService;
 import com.yz.shiro.api.service.RoleService;

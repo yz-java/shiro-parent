@@ -1,17 +1,17 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : my_database
+ Source Server         : 本机
  Source Server Type    : MySQL
- Source Server Version : 50721
- Source Host           : 192.168.1.200:33060
+ Source Server Version : 50723
+ Source Host           : localhost:3306
  Source Schema         : security
 
  Target Server Type    : MySQL
- Target Server Version : 50721
+ Target Server Version : 50723
  File Encoding         : 65001
 
- Date: 06/07/2018 00:22:39
+ Date: 17/08/2018 13:42:34
 */
 
 SET NAMES utf8mb4;
@@ -30,13 +30,14 @@ CREATE TABLE `ss_app` (
   `available` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `idx_sys_app_app_key` (`app_key`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of ss_app
 -- ----------------------------
 BEGIN;
 INSERT INTO `ss_app` VALUES (1, '授权管理系统', '645ba616-370a-43a8-a8e0-993e7a590cf0', 'bb74abb6-bae0-47dd-a7b1-9571ea3a0f33', '', 1);
+INSERT INTO `ss_app` VALUES (2, 'shiro客户端demo', '23ee982d-b562-40a9-ad49-fbc96a81fa16', '772df1d0-824a-4b9a-97ff-4191a9480bd7', '', 0);
 COMMIT;
 
 -- ----------------------------
@@ -202,7 +203,7 @@ CREATE TABLE `ss_role` (
   PRIMARY KEY (`id`),
   KEY `idx_sys_role_resource_ids` (`resource_ids`),
   KEY `idx_r_code` (`r_code`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of ss_role
@@ -226,7 +227,7 @@ CREATE TABLE `ss_user` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `idx_sys_user_username` (`username`),
   KEY `idx_sys_user_organization_id` (`organization_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of ss_user

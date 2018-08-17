@@ -1,6 +1,6 @@
 package com.yz.shiro.api.service;
 
-import com.yz.shiro.api.entity.Resource;
+import com.yz.shiro.entity.Resource;
 
 import java.util.List;
 import java.util.Set;

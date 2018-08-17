@@ -11,22 +11,25 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 
 /**
- *
+ * @author yangzhao
  * @ClassName: ClientRealm
  * @Description: 客户端shiro Realm
- * @author yangzhao
  * @date 2017年12月20日 下午2:03:43
- *
  */
 public class ClientRealm extends AuthorizingRealm {
+
     private RemoteService remoteService;
+
     private String appKey;
+
     public void setRemoteService(RemoteService remoteService) {
         this.remoteService = remoteService;
     }
+
     public void setAppKey(String appKey) {
         this.appKey = appKey;
     }
+
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
         String username = (String) principals.getPrimaryPrincipal();

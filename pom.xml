@@ -7,10 +7,12 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>shiro-distributed-platform-server</module>
-        <module>shiro-distributed-platform-core</module>
         <module>shiro-distributed-platform-client</module>
         <module>shiro-distributed-platform-api</module>
         <module>shiro-distributed-platform-common</module>
+        <module>common-dao</module>
+        <module>shiro-distributed-platform-api-impl</module>
+        <module>shiro-client-demo</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -42,12 +44,6 @@
     </distributionManagement>
 
     <dependencies>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>3.8.1</version>
-            <scope>test</scope>
-        </dependency>
 
         <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
         <dependency>

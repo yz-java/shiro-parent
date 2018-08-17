@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yz.shiro.dao.OrganizationMapper" >
+  <resultMap id="BaseResultMap" type="com.yz.shiro.entity.Organization" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="org_name" property="orgName" jdbcType="VARCHAR" />
+    <result column="org_code" property="orgCode" jdbcType="VARCHAR" />
+    <result column="org_type" property="orgType" jdbcType="TINYINT" />
+    <result column="org_level" property="orgLevel" jdbcType="TINYINT" />
+    <result column="area" property="area" jdbcType="VARCHAR" />
+    <result column="parent_id" property="parentId" jdbcType="BIGINT" />
+    <result column="parent_ids" property="parentIds" jdbcType="VARCHAR" />
+    <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="updatetime" property="updatetime" jdbcType="TIMESTAMP" />
+    <result column="org_status" property="orgStatus" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, org_name, org_code, org_type, org_level, area, parent_id, parent_ids, createtime, 
+    updatetime, org_status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from ss_organization
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from ss_organization
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.yz.shiro.entity.Organization" >
+    insert into ss_organization (id, org_name, org_code, 
+      org_type, org_level, area, 
+      parent_id, parent_ids, createtime, 
+      updatetime, org_status)
+    values (#{id,jdbcType=BIGINT}, #{orgName,jdbcType=VARCHAR}, #{orgCode,jdbcType=VARCHAR}, 
+      #{orgType,jdbcType=TINYINT}, #{orgLevel,jdbcType=TINYINT}, #{area,jdbcType=VARCHAR}, 
+      #{parentId,jdbcType=BIGINT}, #{parentIds,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{updatetime,jdbcType=TIMESTAMP}, #{orgStatus,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yz.shiro.entity.Organization" >
+    insert into ss_organization
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="orgName != null" >
+        org_name,
+      </if>
+      <if test="orgCode != null" >
+        org_code,
+      </if>
+      <if test="orgType != null" >
+        org_type,
+      </if>
+      <if test="orgLevel != null" >
+        org_level,
+      </if>
+      <if test="area != null" >
+        area,
+      </if>
+      <if test="parentId != null" >
+        parent_id,
+      </if>
+      <if test="parentIds != null" >
+        parent_ids,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+      <if test="updatetime != null" >
+        updatetime,
+      </if>
+      <if test="orgStatus != null" >
+        org_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="orgName != null" >
+        #{orgName,jdbcType=VARCHAR},
+      </if>
+      <if test="orgCode != null" >
+        #{orgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="orgType != null" >
+        #{orgType,jdbcType=TINYINT},
+      </if>
+      <if test="orgLevel != null" >
+        #{orgLevel,jdbcType=TINYINT},
+      </if>
+      <if test="area != null" >
+        #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="parentIds != null" >
+        #{parentIds,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orgStatus != null" >
+        #{orgStatus,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yz.shiro.entity.Organization" >
+    update ss_organization
+    <set >
+      <if test="orgName != null" >
+        org_name = #{orgName,jdbcType=VARCHAR},
+      </if>
+      <if test="orgCode != null" >
+        org_code = #{orgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="orgType != null" >
+        org_type = #{orgType,jdbcType=TINYINT},
+      </if>
+      <if test="orgLevel != null" >
+        org_level = #{orgLevel,jdbcType=TINYINT},
+      </if>
+      <if test="area != null" >
+        area = #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        parent_id = #{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="parentIds != null" >
+        parent_ids = #{parentIds,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orgStatus != null" >
+        org_status = #{orgStatus,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yz.shiro.entity.Organization" >
+    update ss_organization
+    set org_name = #{orgName,jdbcType=VARCHAR},
+      org_code = #{orgCode,jdbcType=VARCHAR},
+      org_type = #{orgType,jdbcType=TINYINT},
+      org_level = #{orgLevel,jdbcType=TINYINT},
+      area = #{area,jdbcType=VARCHAR},
+      parent_id = #{parentId,jdbcType=BIGINT},
+      parent_ids = #{parentIds,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      org_status = #{orgStatus,jdbcType=BIT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="selectAllWithExclude" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM ss_organization
+    where id!=#{id} and parent_ids not like '${parentIds}%'
+  </select>
+
+  <update id="elementMoveById" parameterType="java.util.HashMap">
+    update ss_organization
+    set parent_id = #{parentId,jdbcType=BIGINT},
+    parent_ids = #{parentIds,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <update id="nodeMove" parameterType="java.util.HashMap">
+    update ss_organization
+    set parent_ids=CONCAT(#{targetParentIds,jdbcType=VARCHAR}, substring(parent_ids, length(#{sourceParentIds,jdbcType=VARCHAR})))
+    where parent_ids like '${sourceParentIds}%'
+  </update>
+
+  <select id="selectByParentId" resultMap="BaseResultMap" parameterType="java.lang.Long">
+    select
+    <include refid="Base_Column_List"/>
+    from ss_organization
+    where parent_id = #{parentId,jdbcType=BIGINT}
+  </select>
+
+  <select id="select" resultMap="BaseResultMap" parameterType="com.yz.shiro.entity.Organization">
+    select
+    <include refid="Base_Column_List"/>
+    from ss_organization
+    <where>
+      <if test="id != null" >
+        id = #{id}
+      </if>
+      <if test="orgName != null" >
+        org_name = #{orgName,jdbcType=VARCHAR}
+      </if>
+      <if test="orgCode != null" >
+        org_code = #{orgCode,jdbcType=VARCHAR}
+      </if>
+      <if test="orgType != null" >
+        org_type = #{orgType,jdbcType=TINYINT}
+      </if>
+      <if test="orgLevel != null" >
+        org_level = #{orgLevel,jdbcType=TINYINT}
+      </if>
+      <if test="area != null" >
+        area = #{area,jdbcType=VARCHAR}
+      </if>
+      <if test="parentId != null" >
+        parent_id = #{parentId,jdbcType=BIGINT}
+      </if>
+      <if test="parentIds != null" >
+        parent_ids = #{parentIds,jdbcType=VARCHAR}
+      </if>
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="updatetime != null" >
+        updatetime = #{updatetime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="orgStatus != null" >
+        org_status = #{orgStatus,jdbcType=BIT}
+      </if>
+    </where>
+  </select>
+
+  <update id="updateByParentId" parameterType="java.lang.Long" >
+    update ss_organization
+    <set >
+      <if test="orgName != null" >
+        org_name = #{orgName,jdbcType=VARCHAR},
+      </if>
+      <if test="orgCode != null" >
+        org_code = #{orgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="orgType != null" >
+        org_type = #{orgType,jdbcType=TINYINT},
+      </if>
+      <if test="orgLevel != null" >
+        org_level = #{orgLevel,jdbcType=TINYINT},
+      </if>
+      <if test="area != null" >
+        area = #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        parent_id = #{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="parentIds != null" >
+        parent_ids = #{parentIds,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orgStatus != null" >
+        org_status = #{orgStatus,jdbcType=BIT},
+      </if>
+    </set>
+    where parent_id = #{parentId,jdbcType=BIGINT}
+  </update>
+
+  <update id="updateAllChildStatusByParentIds" parameterType="java.util.HashMap">
+    UPDATE ss_organization SET org_status = #{orgStatus},updatetime=#{updatetime}
+    WHERE parent_ids LIKE '${parentIds}%'
+  </update>
+
+</mapper>

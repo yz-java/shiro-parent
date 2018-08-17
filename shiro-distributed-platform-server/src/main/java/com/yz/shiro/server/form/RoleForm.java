@@ -1,6 +1,6 @@
 package com.yz.shiro.server.form;
 
-import com.yz.shiro.api.entity.Role;
+import com.yz.shiro.entity.Role;
 
 /**
  * @author yangzhao

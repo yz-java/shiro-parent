@@ -1,10 +1,10 @@
 package com.yz.shiro.server.controller;
 
-import com.yz.shiro.api.entity.User;
+import com.yz.shiro.entity.User;
 import com.yz.shiro.api.service.AuthorizationService;
 import com.yz.shiro.api.service.ResourceService;
 import com.yz.shiro.common.constants.Constant;
-import com.yz.shiro.api.entity.Resource;
+import com.yz.shiro.entity.Resource;
 import com.yz.shiro.common.annotation.CurrentUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

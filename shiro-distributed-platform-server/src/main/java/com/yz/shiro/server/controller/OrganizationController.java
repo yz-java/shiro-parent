@@ -1,6 +1,6 @@
 package com.yz.shiro.server.controller;
 
-import com.yz.shiro.api.entity.Organization;
+import com.yz.shiro.entity.Organization;
 import com.yz.shiro.api.service.OrganizationService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;

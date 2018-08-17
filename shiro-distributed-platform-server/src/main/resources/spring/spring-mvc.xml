@@ -45,7 +45,7 @@
             <!-- json转换器 -->
             <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" >
                 <property name="objectMapper">
-                    <bean class="com.yz.shiro.server.jackson.WebObjectMapper">
+                    <bean class="com.yz.shiro.common.jackson.IObjectMapper">
                     </bean>
                 </property>
             </bean>

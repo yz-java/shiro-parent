@@ -10,8 +10,8 @@
           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <aop:config proxy-target-class="true"></aop:config>
-    <context:property-placeholder location="classpath:jdbc.properties,classpath:redis.properties"/>
+    <aop:config proxy-target-class="true"/>
+    <context:property-placeholder location="classpath:jdbc.properties,classpath:redis.properties" ignore-unresolvable="true"/>
     <!-- 扫描注解Bean -->
     <context:component-scan base-package="com.yz.shiro.api"/>
 
@@ -39,11 +39,10 @@
 
     <bean class="com.yz.shiro.server.application.ApplicationPrepareHandler"/>
     <bean class="com.yz.shiro.server.utils.SpringUtils"/>
-    <bean id="remoteService" class="com.yz.shiro.api.remote.RemoteServiceImpl"/>
+    <bean id="remoteService" class="com.yz.shiro.api.RemoteServiceImpl"/>
 
-    <import resource="classpath:mybatis/config/spring-mybatis.xml"/>
+    <import resource="classpath:spring-mybatis.xml"/>
     <import resource="classpath:spring/spring-config-shiro.xml"/>
-    <import resource="classpath:spring/spring-aspectj.xml"/>
     <import resource="classpath:spring-redis.xml"/>
 
 </beans>

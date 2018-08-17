@@ -1,7 +1,7 @@
 package com.yz.shiro.api.service;
 
 
-import com.yz.shiro.api.entity.User;
+import com.yz.shiro.entity.User;
 
 import java.util.List;
 

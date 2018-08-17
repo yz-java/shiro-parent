@@ -1,6 +1,6 @@
 package com.yz.shiro.api.service;
 
-import com.yz.shiro.api.entity.AreaTypeDic;
+import com.yz.shiro.entity.AreaTypeDic;
 
 /**
  * @author yangzhao

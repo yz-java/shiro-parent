@@ -1,9 +1,9 @@
 package com.yz.shiro.api.remote;
 
-import com.yz.shiro.api.entity.App;
-import com.yz.shiro.api.entity.Area;
-import com.yz.shiro.api.entity.AreaTypeDic;
-import com.yz.shiro.api.entity.Organization;
+import com.yz.shiro.entity.App;
+import com.yz.shiro.entity.Area;
+import com.yz.shiro.entity.AreaTypeDic;
+import com.yz.shiro.entity.Organization;
 import org.apache.shiro.session.Session;
 
 import java.io.Serializable;

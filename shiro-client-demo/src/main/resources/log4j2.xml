@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration status="OFF">
+
+	<Properties>
+         <Property name="log-path">/Users/yangzhao/Desktop/log</Property>
+          <!--<Property name="log-path">/mnt/huamai/server_log/test_server</Property>-->
+          <!--<Property name="log-path">/mnt//server_log/shenbaitong_server</Property>-->
+    </Properties>
+
+    <!-- 定义所有的appender -->
+    <appenders>
+        <!-- 输出控制台的配置 -->
+        <Console name="Console" target="SYSTEM_OUT">
+            <!--控制台只输出level及以上级别的信息（onMatch），其他的直接拒绝（onMismatch） -->
+            <ThresholdFilter level="trace" onMatch="ACCEPT" onMismatch="DENY"/>
+            <!-- 输出日志的格式 -->
+            <PatternLayout charset="UTF-8" pattern="%d{HH:mm:ss.SSS} %-5level %class{36} %L %M - %msg%xEx%n"/>
+        </Console>
+
+        <RollingFile name="info_appender" fileName="${log-path}/info" filePattern="${log-path}/app-info-%d{yyyy-MM-dd}-%i.log">
+            <Filters>
+                <ThresholdFilter level="warn" onMatch="DENY" onMismatch="NEUTRAL"/>
+                <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+            <PatternLayout charset="UTF-8" pattern="%d %p %c %L %m%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy modulate="true" interval="1"/>
+            </Policies>
+            <DefaultRolloverStrategy>
+                <Delete basePath="${log-path}" maxDepth="1">
+                    <IfFileName glob="app-info*.log"/>
+                    <IfLastModified age="30d"/>
+                </Delete>
+            </DefaultRolloverStrategy>
+        </RollingFile>
+
+        <RollingFile name="debug_appender" fileName="${log-path}/debug"
+                     filePattern="${date:yyyy-MM}/app-debug-%d{MM-dd-yyyy}-%d.log">
+            <Filters>
+                <ThresholdFilter level="info" onMatch="DENY" onMismatch="NEUTRAL"/>
+                <ThresholdFilter level="debug" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+            <PatternLayout charset="UTF-8"
+                           pattern="%d{yyyy-MM-dd 'at' HH:mm:ss z} %-5level %class{36} %L %M - %msg%xEx%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy modulate="true" interval="1"/>
+            </Policies>
+
+            <DefaultRolloverStrategy>
+                <Delete basePath="${log-path}" maxDepth="1">
+                    <IfFileName glob="app-debug*.log"/>
+                    <IfLastModified age="30d"/>
+                </Delete>
+            </DefaultRolloverStrategy>
+        </RollingFile>
+
+        <RollingFile name="error_appender" fileName="${log-path}/error"
+                     filePattern="${date:yyyy-MM}/app-error-%d{MM-dd-yyyy}-%e.log">
+            <Filters>
+                <ThresholdFilter level="warn" onMatch="DENY" onMismatch="NEUTRAL"/>
+                <ThresholdFilter level="error" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+            <PatternLayout charset="UTF-8"
+                           pattern="%d{yyyy-MM-dd 'at' HH:mm:ss z} %-5level %class{36} %L %M - %msg%xEx%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy modulate="true" interval="1"/>
+            </Policies>
+            <DefaultRolloverStrategy>
+                <Delete basePath="${log-path}" maxDepth="1">
+                    <IfFileName glob="app-error*.log"/>
+                    <IfLastModified age="30d"/>
+                </Delete>
+            </DefaultRolloverStrategy>
+        </RollingFile>
+
+    </appenders>
+    <!--然后定义logger，只有定义了logger并引入的appender，appender才会生效 -->
+    <loggers>
+        <!--过滤掉无用Log日志-->
+        <logger name="org.springframework" level="info"/>
+        <logger name="org.mybatis" level="info"/>
+        <logger name="com.atomikos" level="info"/>
+        <logger name="org.apache.activemq" level="info"/>
+        <logger name="org.reflections" level="error"/>
+        <!-- 默认的root的logger -->
+        <root level="trace">
+            <appender-ref ref="Console"/>
+            <appender-ref ref="info_appender"/>
+            <appender-ref ref="debug_appender"/>
+            <appender-ref ref="error_appender"/>
+        </root>
+    </loggers>
+</configuration>

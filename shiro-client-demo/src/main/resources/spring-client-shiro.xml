@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!-- Realm实现 -->
+    <bean id="remoteRealm" class="com.yz.shiro.client.ClientRealm">
+        <property name="cachingEnabled" value="false"/>
+        <property name="appKey" value="${client.app.key}"/>
+        <property name="remoteService" ref="remoteService"/>
+    </bean>
+
+    <!-- 会话ID生成器 -->
+    <bean id="clientSessionIdGenerator" class="org.apache.shiro.session.mgt.eis.JavaUuidSessionIdGenerator"/>
+
+    <!-- 会话Cookie模板 -->
+    <bean id="clientSessionIdCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
+        <constructor-arg value="${client.session.id}"/>
+        <property name="httpOnly" value="true"/>
+        <property name="maxAge" value="-1"/>
+        <property name="domain" value="${client.cookie.domain}"/>
+        <property name="path" value="${client.cookie.path}"/>
+    </bean>
+
+    <bean id="clientRememberMeCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
+        <constructor-arg value="${client.rememberMe.id}"/>
+        <property name="httpOnly" value="true"/>
+        <property name="maxAge" value="2592000"/><!-- 30天 -->
+        <property name="domain" value="${client.cookie.domain}"/>
+        <property name="path" value="${client.cookie.path}"/>
+    </bean>
+
+    <!-- rememberMe管理器 -->
+    <bean id="ClientRememberMeManager" class="org.apache.shiro.web.mgt.CookieRememberMeManager">
+        <!-- rememberMe cookie加密的密钥 建议每个项目都不一样 默认AES算法 密钥长度（128 256 512 位）-->
+        <property name="cipherKey"
+                  value="#{T(org.apache.shiro.codec.Base64).decode('4AvVhmFLUs0KTA3Kprsdag==')}"/>
+        <property name="cookie" ref="clientRememberMeCookie"/>
+    </bean>
+
+    <!-- 会话DAO -->
+    <bean id="clientSessionDao" class="com.yz.shiro.client.ClientSessionDAO">
+        <property name="sessionIdGenerator" ref="clientSessionIdGenerator"/>
+        <property name="appKey" value="${client.app.key}"/>
+        <property name="remoteService" ref="remoteService"/>
+    </bean>
+
+    <bean id="sessionFactory" class="com.yz.shiro.common.session.ShiroSessionFactory"/>
+
+    <!-- 会话管理器 -->
+    <bean id="clientSessionManager" class="com.yz.shiro.client.ClientWebSessionManager">
+        <property name="deleteInvalidSessions" value="false"/>
+        <property name="sessionValidationSchedulerEnabled" value="false"/>
+        <property name="sessionDAO" ref="clientSessionDao"/>
+        <property name="sessionIdCookieEnabled" value="true"/>
+        <property name="sessionIdCookie" ref="clientSessionIdCookie"/>
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <!-- 安全管理器 -->
+    <bean id="clientSecurityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <property name="realm" ref="remoteRealm"/>
+        <property name="sessionManager" ref="clientSessionManager"/>
+        <property name="rememberMeManager" ref="ClientRememberMeManager"/>
+    </bean>
+
+    <!-- 相当于调用SecurityUtils.setSecurityManager(securityManager) -->
+    <bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+        <property name="staticMethod" value="org.apache.shiro.SecurityUtils.setSecurityManager"/>
+        <property name="arguments" ref="clientSecurityManager"/>
+    </bean>
+
+    <bean id="clientAuthenticationFilter" class="com.yz.shiro.client.ClientAuthenticationFilter"/>
+    <bean id="sysUserFilter" class="com.yz.shiro.common.filter.SysUserFilter"/>
+
+    <!-- Shiro的Web过滤器 -->
+    <bean id="shiroFilter" class="com.yz.shiro.client.ClientShiroFilterFactoryBean">
+        <property name="securityManager" ref="clientSecurityManager"/>
+        <property name="loginUrl" value="${client.login.url}"/>
+        <property name="successUrl" value="${client.success.url}"/>
+        <property name="unauthorizedUrl" value="${client.unauthorized.url}"/>
+        <property name="filters">
+            <util:map>
+                <entry key="authc" value-ref="clientAuthenticationFilter"/>
+                <entry key="sysUser" value-ref="sysUserFilter"/>
+            </util:map>
+        </property>
+        <property name="filterChainDefinitions">
+            <value>
+                /** = authc,sysUser
+            </value>
+        </property>
+    </bean>
+
+    <!-- Shiro生命周期处理器-->
+    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+
+    <import resource="classpath:spring-client-remote-service.xml"/>
+</beans>

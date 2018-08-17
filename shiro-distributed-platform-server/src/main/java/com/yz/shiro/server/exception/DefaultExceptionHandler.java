@@ -11,8 +11,8 @@ import org.springframework.web.servlet.ModelAndView;
 /**
  * 
 * @ClassName: DefaultExceptionHandler 
-* @Description: TODO(这里用一句话描述这个类的作用) 
-* @author yangyw(imalex@163.com)
+* @Description: 控制器异常统一处理
+* @author yangzhao
 * @date 2015年3月20日 下午2:10:10 
 *
  */

@@ -2,8 +2,10 @@ package com.yz.shiro.server.controller;
 
 import java.util.List;
 import java.util.Map;
-import com.yz.shiro.api.entity.Organization;
-import com.yz.shiro.api.entity.User;
+
+import com.yz.shiro.common.annotation.CurrentUser;
+import com.yz.shiro.entity.Organization;
+import com.yz.shiro.entity.User;
 import com.yz.shiro.api.service.OrganizationService;
 import com.yz.shiro.api.service.UserService;
 import com.yz.shiro.server.utils.UUID;

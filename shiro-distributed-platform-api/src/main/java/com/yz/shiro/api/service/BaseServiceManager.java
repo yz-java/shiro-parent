@@ -1,6 +1,6 @@
 package com.yz.shiro.api.service;
 
-import com.yz.shiro.api.dao.DaoManager;
+import com.yz.shiro.dao.DaoManager;
 import org.springframework.util.CollectionUtils;
 
 import java.util.List;

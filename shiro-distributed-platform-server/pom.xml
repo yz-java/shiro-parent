@@ -8,12 +8,19 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>shiro-distributed-platform-server</artifactId>
     <packaging>war</packaging>
-    <name>server Maven Webapp</name>
+    <name>shiro-distributed-platform-server</name>
     <url>http://maven.apache.org</url>
     <dependencies>
+
         <dependency>
             <groupId>com.yz.shiro</groupId>
-            <artifactId>shiro-distributed-platform-core</artifactId>
+            <artifactId>shiro-distributed-platform-common</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.yz.shiro</groupId>
+            <artifactId>shiro-distributed-platform-api-impl</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
