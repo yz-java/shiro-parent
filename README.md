@@ -7,6 +7,8 @@
 
 该项目是在张开涛跟我学shiro Demo基础上进行开发、功能完善和管理页面优化，欢迎fork、star及提出改进意见。
 
+<iframe height=500 width=100% src="http://yzfile.oss-cn-beijing.aliyuncs.com/QQ20180818-212046-HD.mp4"></iframe>
+
 ## 公用模块：shiro-distributed-platform-common
 #### 自定义注解-CurrentUser
 通过注解获取当前登录用户
